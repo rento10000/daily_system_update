@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import models.Report;
 
 @WebServlet("/reports/new")
-public class ReportNewServlet extends HttpServlet {
+public class ReportsNewServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public ReportNewServlet() {
+    public ReportsNewServlet() {
         super();
 
     }
