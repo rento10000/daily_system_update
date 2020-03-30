@@ -18,7 +18,6 @@ public class ReportsNewServlet extends HttpServlet {
 
     public ReportsNewServlet() {
         super();
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
