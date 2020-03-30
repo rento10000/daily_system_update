@@ -29,6 +29,9 @@
             </div>
             <div id="content">
                 ${param.content}
+
+                <p><a href="<c:url value='/employees/new' />">新規従業員の登録</a></p>
+
             </div>
             <div id="footer">
                 by Taro Kirameki.
