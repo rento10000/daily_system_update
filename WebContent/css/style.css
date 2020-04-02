@@ -4,6 +4,7 @@ body {
     color: #333333;
     font-family: "Hiragino Kaku Gothic Pro", Meiryo, "MS PGothic", Helvetica,
         Arial, sans-serif;
+    background-color: cadetblue;
 }
 
 #header {
@@ -69,6 +70,7 @@ button {
 
 #footer {
     text-align: center;
+
 }
 
 #flush_success {
