@@ -35,6 +35,11 @@
                             <td><fmt:formatDate value="${report.updated_at}"
                                     pattern="yyyy-MM-dd HH:mm:ss" /></td>
                         </tr>
+                        <tr>
+                        <th>承認</th>
+                        <td><fmt:formatDate value="${report.updated_at}"
+                                    pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                        </tr>
                     </tbody>
                 </table>
 
@@ -42,6 +47,7 @@
                     <p>
                         <a href="<c:url value="/reports/edit?id=${report.id}" />">この日報を編集する</a>
                     </p>
+
                 </c:if>
             </c:when>
             <c:otherwise>
