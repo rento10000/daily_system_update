@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="jav送信a" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -10,15 +10,16 @@
 </head>
 <body>
     <h1>コメント</h1>
-    <form method="POST" action="/daily_report_system/reports/show">
-        <label for="message">内容</label><br />
-        <textarea name="message" rows="10" cols="50">${report.message}</textarea>
-        <br />
-        <br />
-        <button type="submit">送信</button>
+
+        <label for="content">メッセージ</label><br />
+<input type="text" name="content" value="${report.message}" />
+<br /><br />
+
+<input type="hidden" name="_token" value="${_token}" />
+<button type="submit">送信</button>
         <p>
             <a href="<c:url value='/employees/index' />">一覧に戻る</a>
         </p>
-    </form>
+
 </body>
 </html>
