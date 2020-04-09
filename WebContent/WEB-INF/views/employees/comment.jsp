@@ -10,15 +10,15 @@
 </head>
 <body>
     <h1>コメント</h1>
-    <form method="POST" action="/employees/index/">
-
-        <label for="content">内容</label><br />
-        <textarea name="content" rows="10" cols="50">${report.content}</textarea>
+    <form method="POST" action="/daily_report_system/reports/show">
+        <label for="message">内容</label><br />
+        <textarea name="message" rows="10" cols="50">${report.message}</textarea>
         <br />
         <br />
-
-        response.sendRedirect(request.getContent());
         <button type="submit">送信</button>
+        <p>
+            <a href="<c:url value='/employees/index' />">一覧に戻る</a>
+        </p>
     </form>
 </body>
 </html>

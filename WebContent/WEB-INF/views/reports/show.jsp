@@ -36,9 +36,10 @@
                                     pattern="yyyy-MM-dd HH:mm:ss" /></td>
                         </tr>
                         <tr>
-                        <th>承認</th>
-                        <td><fmt:formatDate value="${report.updated_at}"
-                                    pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                            <th>メッセージ</th>
+                            <td><pre>
+                                    <c:out value="${report.message}" />
+                                </pre></td>
                         </tr>
                     </tbody>
                 </table>
