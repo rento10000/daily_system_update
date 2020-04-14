@@ -1,7 +1,6 @@
 package controllers.reports;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -31,15 +30,14 @@ public class ReportsShowServlet extends HttpServlet {
         if (_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Report r = em.find(Report.class, Integer.parseInt(request.getParameter("report_id")));
+            Report r = em.find(Report.class, Integer.parseInt(request.getParameter("report.id")));
 
-            r.setReport_date(Date.valueOf(request.getParameter("report_date")));
             r.setTitle(request.getParameter("title"));
             r.setContent(request.getParameter("content"));
-
-            String message  = request.getParameter("message");
             r.setMessage(request.getParameter("message"));
-            if(message == null || message.equals("")) {
+
+            String message = request.getParameter("message");
+            if (message == null || message.equals("")) {
                 r.setMessage(" ");
             }
 
@@ -60,6 +58,8 @@ public class ReportsShowServlet extends HttpServlet {
                 request.getSession().setAttribute("flush", "更新が完了しました。");
 
                 request.getSession().removeAttribute("report_id");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/show.jsp");
+                rd.forward(request, response);
 
                 response.sendRedirect(request.getContextPath() + "/reports/index");
             }

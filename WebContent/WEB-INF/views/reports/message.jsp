@@ -14,7 +14,7 @@
         <textarea rows="5" cols="25" name="message"></textarea>
         <br />
         <br />
-        <input type="hidden" name="id" value="${id}" />
+        <input type="hidden" name="report_id" value="${report_id}" />
         <input type="hidden" name="_token" value="${_token}" />
         <button type="submit">送信</button>
         <p>
