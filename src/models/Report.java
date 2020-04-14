@@ -25,6 +25,14 @@ import javax.persistence.Table;
             name = "getReportsCount",
             query = "SELECT COUNT(r) FROM Report AS r"
             ),
+    @NamedQuery(
+            name = "getMyAllReports",
+            query = "SELECT r FROM Report AS r WHERE r.employee = :employee ORDER BY r.id DESC"
+            ),
+    @NamedQuery(
+            name = "getMyReportsCount",
+            query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :employee"
+            )
 })
 @Entity
 public class Report {
@@ -46,6 +54,10 @@ public class Report {
     @Lob
     @Column(name = "content", nullable = false)
     private String content;
+
+    @Lob
+    @Column(name = "message", nullable = false)
+    private String message;
 
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
@@ -93,6 +105,13 @@ public class Report {
         this.content = content;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
     public Timestamp getCreated_at() {
         return created_at;
     }

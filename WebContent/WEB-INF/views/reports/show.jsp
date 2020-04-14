@@ -35,6 +35,12 @@
                                 <fmt:formatDate value="${report.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" />
                             </td>
                         </tr>
+                        <tr>
+                            <th>メッセージ</th>
+                            <td>
+                                <pre><c:out value="${report.message}" /></pre>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
@@ -46,7 +52,8 @@
                 <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
         </c:choose>
-
+        <p><a href="<c:url value="/repors/message" />">メッセージ</a></p>
         <p><a href="<c:url value="/reports/index" />">一覧に戻る</a></p>
+
     </c:param>
 </c:import>

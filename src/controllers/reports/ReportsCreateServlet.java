@@ -51,7 +51,14 @@ public class ReportsCreateServlet extends HttpServlet {
             r.setCreated_at(currentTime);
             r.setUpdated_at(currentTime);
 
+            String message = request.getParameter("message");
+            r.setMessage(request.getParameter("message"));
+            if (message == null || message.equals("")) {
+                r.setMessage(" ");
+            }
+
             List<String> errors = ReportValidator.validate(r);
+
             if (errors.size() > 0) {
                 em.close();
 
@@ -67,6 +74,9 @@ public class ReportsCreateServlet extends HttpServlet {
                 em.getTransaction().commit();
                 em.close();
                 request.getSession().setAttribute("flush", "登録が完了しました。");
+
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/show.jsp");
+                rd.forward(request, response);
 
                 response.sendRedirect(request.getContextPath() + "/reports/index");
             }

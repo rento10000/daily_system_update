@@ -1,8 +1,6 @@
 package controllers.reports;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -17,13 +15,12 @@ import models.Report;
 import models.validators.ReportValidator;
 import utils.DBUtil;
 
-@WebServlet("/reports/update")
-public class ReportsUpdateServlet extends HttpServlet {
+@WebServlet("/repors/message")
+public class ReportsMessage extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public ReportsUpdateServlet() {
+    public ReportsMessage() {
         super();
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -32,16 +29,14 @@ public class ReportsUpdateServlet extends HttpServlet {
         if (_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Report r = em.find(Report.class, (Integer) (request.getSession().getAttribute("report_id")));
+            Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
 
-            r.setReport_date(Date.valueOf(request.getParameter("report_date")));
             r.setTitle(request.getParameter("title"));
             r.setContent(request.getParameter("content"));
-            r.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
-            String message  = request.getParameter("message");
+            String message = request.getParameter("message");
             r.setMessage(request.getParameter("message"));
-            if(message == null || message.equals("")) {
+            if (message == null || message.equals("")) {
                 r.setMessage(" ");
             }
 
@@ -53,7 +48,7 @@ public class ReportsUpdateServlet extends HttpServlet {
                 request.setAttribute("report", r);
                 request.setAttribute("errors", errors);
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/edit.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/show.jsp");
                 rd.forward(request, response);
             } else {
                 em.getTransaction().begin();
@@ -62,10 +57,26 @@ public class ReportsUpdateServlet extends HttpServlet {
                 request.getSession().setAttribute("flush", "更新が完了しました。");
 
                 request.getSession().removeAttribute("report_id");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/message.jsp");
+                rd.forward(request, response);
 
                 response.sendRedirect(request.getContextPath() + "/reports/index");
             }
         }
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        EntityManager em = DBUtil.createEntityManager();
+        request.setAttribute("_token", request.getSession().getId());
+
+        em.close();
+
+        String message = request.getParameter("message");
+        request.setAttribute("message", message);
+
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/message.jsp");
+        rd.forward(request, response);
     }
 
 }
