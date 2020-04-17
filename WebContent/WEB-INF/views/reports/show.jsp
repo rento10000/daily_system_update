@@ -44,7 +44,7 @@
                     </tbody>
                 </table>
 
-                <c:if test="${sessionScope.login_employee.id == report.employee.id}">
+                <c:if test="${sessionScope.login_employee.id == report.employee.id || sessionScope.login_employee.admin_flag == 1}">
                     <p><a href="<c:url value="/reports/edit?id=${report.id}" />">この日報を編集する</a></p>
                 </c:if>
             </c:when>
@@ -52,7 +52,6 @@
                 <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
         </c:choose>
-        <p><a href="<c:url value="/repors/message" />">メッセージ</a></p>
         <p><a href="<c:url value="/reports/index" />">一覧に戻る</a></p>
 
     </c:param>

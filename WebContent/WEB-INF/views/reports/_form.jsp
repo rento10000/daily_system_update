@@ -26,5 +26,15 @@
 <textarea name="content" rows="10" cols="50">${report.content}</textarea>
 <br /><br />
 
+<c:choose>
+    <c:when test="${sessionScope.login_employee.admin_flag == 1}">
+        <label for="message">メッセージ</label><br />
+        <textarea name="message" rows="10" cols="50">${report.message}</textarea>
+        <br /><br />
+    </c:when>
+    <c:otherwise>
+        <c:out value="${report.message}" />
+    </c:otherwise>
+</c:choose>
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit">投稿</button>

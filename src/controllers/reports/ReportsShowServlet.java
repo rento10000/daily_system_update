@@ -30,7 +30,8 @@ public class ReportsShowServlet extends HttpServlet {
         if (_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Report r = em.find(Report.class, Integer.parseInt(request.getParameter("report.id")));
+            request.setAttribute("_token", request.getSession().getId());
+            Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
 
             r.setTitle(request.getParameter("title"));
             r.setContent(request.getParameter("content"));
@@ -72,7 +73,6 @@ public class ReportsShowServlet extends HttpServlet {
         request.setAttribute("_token", request.getSession().getId());
 
         Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
-
         em.close();
 
         request.setAttribute("report", r);

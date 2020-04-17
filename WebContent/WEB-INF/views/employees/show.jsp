@@ -46,7 +46,6 @@
                 <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
         </c:choose>
-        <a href="<c:url value='/employees/comment' />">コメント</a>
         <p>
             <a href="<c:url value='/employees/index' />">一覧に戻る</a>
         </p>

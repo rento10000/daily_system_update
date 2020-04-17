@@ -75,9 +75,6 @@ public class ReportsCreateServlet extends HttpServlet {
                 em.close();
                 request.getSession().setAttribute("flush", "登録が完了しました。");
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/show.jsp");
-                rd.forward(request, response);
-
                 response.sendRedirect(request.getContextPath() + "/reports/index");
             }
         }
