@@ -1,10 +1,12 @@
 @CHARSET "UTF-8";
+html {
+    background-color: cadetblue;
+}
 
 body {
     color: #333333;
     font-family: "Hiragino Kaku Gothic Pro", Meiryo, "MS PGothic", Helvetica,
         Arial, sans-serif;
-    background-color: cadetblue;
 }
 
 #header {
